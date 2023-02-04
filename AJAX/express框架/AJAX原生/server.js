@@ -5,8 +5,13 @@ const express = require('express');
 const app = express();
 //创建路由规则
 app.get('/server', (request, response) =>{
-  response.setHeader('Access-Control-Allow-Origin','*')
-  response.send("hello ajax")
+  response.setHeader('Access-Control-Allow-Origin','*');
+  const data = {
+    name:'哈哈哈'
+  };
+  let str = JSON.stringify(data);
+  // send 只能发送字符串类型 所以需要将对象转化为字符串形式
+  response.send(str);
 });
 //监听端口启动服务
 app.listen(8000, () =>{

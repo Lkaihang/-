@@ -16,13 +16,26 @@
       const btn = document.getElementsByTagName('button')[0];
       const result = document.getElementById('result');
       btn.onclick = () =>{
+        //1. 创建对象
         const xhr = new XMLHttpRequest();
+        //也可以通过设置响应体类型自动转化
+        xhr.responseType = 'json';
+        //2. 初始化 设置类型和URL
         xhr.open('GET','http://localhost:8000/server');
+          //设置请求头 下面是预定义 也可以自定义，但需要在服务器端设置响应头 将请求接收改为all
+        // xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+         
+        //3. 发送请求
         xhr.send();
         xhr.onreadystatechange = () =>{
           if(xhr.readyState === 4){
             if(xhr.status >= 200 && xhr.status < 300){
-            result.innerHTML = xhr.response;
+            // 1.将响应返回结果 字符串转化为对象
+            // 2.也可以通过设置响应体类型自动转化->代码22行
+            
+            //1.let data = JSON.parse(xhr.response);
+            //1.result.innerHTML = data.name;
+            result.innerHTML = xhr.response.name;
           }
           }
         }
