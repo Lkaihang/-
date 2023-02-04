@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.2/axios.min.js"></script>
+</head>
+<body>
+  <div>
+    <button>发送</button>
+    <button>添加</button>
+    <button>更新</button>
+    <button>删除</button>
+  </div>
+  <script>
+    const btn = document.querySelectorAll('button');
+    btn[0].onclick = () =>{
+      //发送ajax请求
+      axios({
+        method:'GET',
+        url:'http://localhost:3000/posts/2'
+      }).then(response => {
+        console.log(response);
+      })
+    };
+    
+    btn[1].onclick = () => {
+      //添加信息
+      axios({
+        method:'POST',
+        url:'http://localhost:3000/posts',
+        data:{
+          title:'123',
+          author:'小明'
+        }
+      }).then(response => {
+        console.log(response);
+      })
+    };
+    btn[2].onclick = () => {
+      //更新信息
+      axios({
+        method:'PUT',
+        url:'http://localhost:3000/posts/3',
+        data:{
+          title:'123456',
+          author:'小li'
+        }
+      }).then(response => {
+        console.log(response);
+      })
+    },
+    btn[3].onclick = () => {
+      //删除信息
+      axios({
+        method:'DELETE',
+        url:'http://localhost:3000/posts/3'
+      }).then(response => {
+        console.log(response);
+      })
+    }
+    console.log(axios);
+  </script>
+</body>
+</html>
